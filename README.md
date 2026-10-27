@@ -6,7 +6,7 @@ track stock levels, expiry dates and low-stock alerts, and auto-build a
 bazar shopping list from what is actually running low, expiring, or
 already expired.
 
-> Built by the MUSE Project Factory Ω (run #151, 12:00 slot, 2026-10-27).
+> Built by the MUSE Project Factory Ω (run #153, 12:00 slot, 2026-10-27).
 > Ships EMPTY — no real pantry data is included. A clearly-labelled
 > sample loader is provided for trying the app out.
 
