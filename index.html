@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pantry Inventory BD — Kitchen stock, expiry &amp; shopping list</title>
+<meta name="description" content="Offline bilingual pantry manager for Bangladeshi kitchens: track stock, expiry dates and low-stock alerts, and auto-build your bazar shopping list.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1 id="appTitle">Pantry Inventory BD</h1>
+    <p id="appSubtitle">Know what is in your kitchen — before you go to the bazar.</p>
+  </div>
+  <button id="langBtn" class="lang">বাংলা</button>
+</header>
+
+<main>
+  <p id="msg" class="msg" hidden></p>
+
+  <section class="panel" aria-label="add item">
+    <h2 id="formTitle">Add item</h2>
+    <form id="addForm">
+      <div class="grid2">
+        <label><span id="lblName">Item name</span>
+          <input id="itemName" type="text" maxlength="60" required></label>
+        <label><span id="lblCategory">Category</span>
+          <select id="formCategory"></select></label>
+        <label><span id="lblQty">Quantity</span>
+          <input id="formQty" type="number" min="0" step="0.01" required></label>
+        <label><span id="lblUnit">Unit</span>
+          <select id="formUnit"></select></label>
+        <label><span id="lblExpiry">Expiry date (optional)</span>
+          <input id="formExpiry" type="date"></label>
+        <label><span id="lblLowAt">Low-stock alert at</span>
+          <input id="formLowAt" type="number" min="0" step="0.01" value="1" required></label>
+      </div>
+      <div class="form-actions">
+        <button id="saveBtn" type="submit" class="primary">Save item</button>
+        <button id="cancelEditBtn" type="button" hidden>Cancel edit</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="stats" aria-label="summary">
+    <div class="stat"><strong id="statTotal">0</strong><span id="lblTotal">Items</span></div>
+    <div class="stat warn"><strong id="statLow">0</strong><span id="lblLow">Low stock</span></div>
+    <div class="stat warn"><strong id="statSoon">0</strong><span id="lblSoon">Expiring soon</span></div>
+    <div class="stat bad"><strong id="statExpired">0</strong><span id="lblExpired">Expired</span></div>
+  </section>
+
+  <section class="panel" aria-label="filters">
+    <div class="filters">
+      <input id="searchInput" type="search" placeholder="Search items…">
+      <select id="filterCategory"></select>
+      <select id="filterStatus"></select>
+      <select id="filterSort"></select>
+    </div>
+  </section>
+
+  <section aria-label="items">
+    <div id="emptyState" class="empty">
+      <p id="emptyText">Your pantry is empty. Add your first item above — or load the labelled sample to try it out.</p>
+      <button id="sampleBtn" class="primary">Load sample items</button>
+      <p id="sampleNote" class="note" hidden>Sample data — example items only, not your real pantry.</p>
+    </div>
+    <div id="itemList" class="cards"></div>
+  </section>
+
+  <section class="panel" aria-label="shopping list">
+    <h2 id="shoppingTitle">Shopping list (auto)</h2>
+    <p id="shoppingHint" class="hint">Built from low-stock, expiring and expired items.</p>
+    <ul id="shopList"></ul>
+    <div class="form-actions">
+      <button id="copyBtn" class="primary">Copy list as text</button>
+      <button id="exportBtn">Export JSON</button>
+      <button id="importBtn">Import JSON</button>
+      <input id="importFile" type="file" accept=".json,application/json" hidden>
+    </div>
+  </section>
+
+  <section class="panel danger-zone" aria-label="erase">
+    <h2 id="eraseTitle">Erase everything</h2>
+    <p id="eraseHint" class="hint">Type DELETE below to erase all items. This cannot be undone.</p>
+    <div class="erase-row">
+      <input id="eraseInput" type="text" placeholder="DELETE" autocomplete="off">
+      <button id="eraseBtn" class="danger">Erase all</button>
+    </div>
+  </section>
+</main>
+
+<footer><p id="footerText">100% offline — your pantry data never leaves this device. Quantities and dates are what you enter; check packets before cooking.</p></footer>
+
+<script src="js/logic.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
